@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meu Bairro Sustentável: dicas simples para cuidar do meio ambiente e participar de ações comunitárias.">
+  <title>Meu Bairro Sustentável</title>
+  <style>
+    :root {
+      --green: #236b45;
+      --green-dark: #174a30;
+      --green-light: #e8f4e9;
+      --cream: #fbfaf4;
+      --ink: #24342a;
+      --muted: #5b6a60;
+      --white: #ffffff;
+      --line: #dce7dc;
+      --gold: #f0c96b;
+      --shadow: 0 10px 28px rgba(28, 70, 43, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    a { color: var(--green-dark); }
+    .wrap { width: min(1100px, 92%); margin: 0 auto; }
+    header {
+      background: rgba(251,250,244,.96);
+      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding: .8rem 0; }
+    .brand { display:flex; align-items:center; gap:.6rem; font-weight:800; color:var(--green-dark); text-decoration:none; }
+    .brand-mark { display:grid; place-items:center; width:42px; height:42px; border-radius:14px; background:var(--green-light); font-size:1.45rem; }
+    nav { display:flex; gap:.9rem; flex-wrap:wrap; justify-content:flex-end; }
+    nav a { font-size:.92rem; text-decoration:none; font-weight:650; }
+    nav a:hover, a:hover { text-decoration:underline; }
+    .hero { padding: 4.4rem 0 3.8rem; background:linear-gradient(135deg,#e8f4e9 0%,#fbfaf4 65%,#f8edce 100%); }
+    .hero-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:2rem; align-items:center; }
+    .eyebrow { display:inline-block; color:var(--green); font-weight:800; text-transform:uppercase; letter-spacing:.09em; font-size:.78rem; }
+    h1 { font-size:clamp(2.3rem,5vw,4.2rem); line-height:1.08; margin:.7rem 0 1rem; letter-spacing:-.04em; color:var(--green-dark); }
+    h2 { color:var(--green-dark); font-size:clamp(1.7rem,3vw,2.35rem); line-height:1.2; margin:0 0 .7rem; letter-spacing:-.025em; }
+    h3 { margin:.2rem 0 .45rem; color:var(--green-dark); }
+    p { margin:.4rem 0 1rem; }
+    .lead { font-size:1.12rem; color:#43594a; max-width:650px; }
+    .actions { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.4rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.45rem; border:2px solid var(--green); background:var(--green); color:white; text-decoration:none; border-radius:999px; padding:.78rem 1.15rem; font-weight:750; cursor:pointer; font:inherit; font-weight:750; }
+    .btn:hover { background:var(--green-dark); border-color:var(--green-dark); text-decoration:none; }
+    .btn.secondary { background:transparent; color:var(--green-dark); }
+    .btn.secondary:hover { background:var(--green-light); }
+    .hero-art { background:white; padding:1rem; border-radius:28px; box-shadow:var(--shadow); transform:rotate(1deg); }
+    .hero-art svg { display:block; width:100%; height:auto; border-radius:20px; }
+    section { padding:4rem 0; scroll-margin-top:90px; }
+    section.alt { background:#f0f6ef; }
+    .section-intro { color:var(--muted); max-width:720px; margin-bottom:1.7rem; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .card { background:white; border:1px solid var(--line); border-radius:20px; padding:1.3rem; box-shadow:0 4px 14px rgba(28,70,43,.035); }
+    .icon { display:grid; place-items:center; width:48px; height:48px; background:var(--green-light); border-radius:15px; font-size:1.45rem; margin-bottom:.8rem; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; align-items:start; }
+    .highlight { background:var(--green-dark); color:white; border-radius:24px; padding:1.6rem; }
+    .highlight h3 { color:white; }
+    .highlight p { color:#e4f2e7; }
+    .tip-list { padding-left:1.2rem; margin:.7rem 0 0; }
+    .tip-list li { margin:.55rem 0; }
+    .pill { display:inline-block; padding:.25rem .65rem; border-radius:999px; background:#fff2cb; color:#6e5010; font-size:.82rem; font-weight:750; }
+    .suggestion-example { border-left:4px solid var(--gold); padding:.5rem 0 .5rem 1rem; font-style:italic; color:#43594a; }
+    .form-shell { background:white; border:1px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:var(--shadow); }
+    .form-head { padding:1.25rem 1.35rem; background:var(--green-light); }
+    .form-head p { margin-bottom:0; color:var(--muted); }
+    .form-frame { width:100%; height:900px; border:0; display:block; background:white; }
+    .form-fallback { padding:1.4rem; }
+    .note { font-size:.91rem; color:var(--muted); }
+    .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; counter-reset:step; }
+    .step { background:white; border:1px solid var(--line); padding:1.1rem; border-radius:18px; }
+    .step:before { counter-increment:step; content:counter(step); display:grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--green); color:white; font-weight:800; margin-bottom:.65rem; }
+    .participate { background:linear-gradient(135deg,#236b45,#174a30); color:white; border-radius:26px; padding:2rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+    .participate h2 { color:white; }
+    .participate p { color:#e4f2e7; max-width:650px; }
+    .participate .btn { background:white; border-color:white; color:var(--green-dark); white-space:nowrap; }
+    .privacy { padding:1rem 1.1rem; background:#fff8e7; border:1px solid #f0dfae; border-radius:15px; font-size:.9rem; }
+    footer { background:#153d28; color:#e4f2e7; padding:2rem 0; }
+    footer a { color:white; }
+    .footer-row { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+    .small { font-size:.88rem; }
+    @media(max-width:800px) {
+      .hero-grid,.two-col { grid-template-columns:1fr; }
+      .hero { padding:3rem 0; }
+      .hero-art { max-width:500px; }
+      .cards { grid-template-columns:repeat(2,1fr); }
+      .steps { grid-template-columns:repeat(2,1fr); }
+      .participate { align-items:flex-start; flex-direction:column; }
+      nav { gap:.5rem; }
+      nav a { font-size:.82rem; }
+    }
+    @media(max-width:520px) {
+      .nav { align-items:flex-start; flex-direction:column; }
+      nav { justify-content:flex-start; }
+      .cards,.steps { grid-template-columns:1fr; }
+      section { padding:3rem 0; }
+      .form-frame { height:1000px; }
+      .btn { width:100%; }
+      .actions { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="Meu Bairro Sustentável, início">
+        <span class="brand-mark" aria-hidden="true">🌱</span>
+        <span>Meu Bairro Sustentável</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#sobre">O que é</a>
+        <a href="#importancia">Por que importa</a>
+        <a href="#ajudar">Como ajudar</a>
+        <a href="#participar">Participar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Pequenas atitudes, grandes mudanças</span>
+          <h1>Um bairro melhor começa com a gente.</h1>
+          <p class="lead">Vamos aprender juntos a cuidar do meio ambiente? Aqui você encontra ideias simples para reduzir o desperdício, reaproveitar materiais e deixar nossa comunidade mais limpa, verde e acolhedora.</p>
+          <div class="actions">
+            <a class="btn" href="#ajudar">🌿 Descobrir como ajudar</a>
+            <a class="btn secondary" href="#participar">💬 Enviar uma ideia</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Ilustração de uma comunidade sustentável">
+          <svg viewBox="0 0 520 390" role="img" aria-labelledby="art-title">
+            <title id="art-title">Casas, árvores, sol e pessoas cuidando de um bairro verde</title>
+            <rect width="520" height="390" rx="20" fill="#edf7e9"/>
+            <circle cx="420" cy="72" r="35" fill="#f0c96b"/>
+            <path d="M0 245 Q110 190 220 245 T520 225 V390 H0Z" fill="#c8e4be"/>
+            <path d="M0 300 Q140 250 260 300 T520 285 V390 H0Z" fill="#9dcc91"/>
+            <rect x="56" y="165" width="116" height="105" rx="5" fill="#f4d8aa"/>
+            <path d="M42 168 L114 112 L186 168Z" fill="#c87854"/>
+            <rect x="78" y="197" width="27" height="32" rx="3" fill="#8cb9c4"/>
+            <rect x="124" y="197" width="27" height="32" rx="3" fill="#8cb9c4"/>
+            <rect x="100" y="230" width="27" height="40" fill="#8b6046"/>
+            <rect x="286" y="176" width="133" height="94" rx="5" fill="#f4d8aa"/>
+            <path d="M270 179 L352 119 L435 179Z" fill="#236b45"/>
+            <rect x="309" y="201" width="28" height="29" rx="3" fill="#8cb9c4"/>
+            <rect x="366" y="201" width="28" height="29" rx="3" fill="#8cb9c4"/>
+            <rect x="340" y="230" width="27" height="40" fill="#8b6046"/>
+            <rect x="220" y="280" width="78" height="16" rx="8" fill="#6c9b59"/>
+            <path d="M236 280 Q258 240 282 280" fill="#f1cb63"/>
+            <circle cx="255" cy="259" r="8" fill="#f1cb63"/>
+            <g transform="translate(25 210)">
+              <rect x="0" y="35" width="13" height="45" rx="5" fill="#8b6046"/>
+              <circle cx="6" cy="20" r="30" fill="#3e8b54"/>
+              <circle cx="-8" cy="31" r="20" fill="#56a568"/>
+              <circle cx="20" cy="33" r="19" fill="#6dbb75"/>
+            </g>
+            <g transform="translate(455 205)">
+              <rect x="0" y="35" width="13" height="45" rx="5" fill="#8b6046"/>
+              <circle cx="6" cy="20" r="30" fill="#3e8b54"/>
+              <circle cx="-8" cy="31" r="20" fill="#56a568"/>
+              <circle cx="20" cy="33" r="19" fill="#6dbb75"/>
+            </g>
+            <g transform="translate(205 250)">
+              <circle cx="0" cy="0" r="12" fill="#bd8058"/>
+              <path d="M-12 14 Q0 6 12 14 L17 52 H-17Z" fill="#236b45"/>
+              <path d="M-9 51 L-13 78 M9 51 L14 78" stroke="#425c48" stroke-width="8" stroke-linecap="round"/>
+              <path d="M-10 20 L-29 37 M10 20 L29 31" stroke="#bd8058" stroke-width="7" stroke-linecap="round"/>
+            </g>
+            <g transform="translate(320 270)">
+              <circle cx="0" cy="0" r="11" fill="#d59a71"/>
+              <path d="M-11 13 Q0 6 11 13 L15 47 H-15Z" fill="#e5a83f"/>
+              <path d="M-7 47 L-10 69 M7 47 L10 69" stroke="#425c48" stroke-width="7" stroke-linecap="round"/>
+              <path d="M-10 19 L-24 30 M10 19 L23 30" stroke="#d59a71" stroke-width="6" stroke-linecap="round"/>
+            </g>
+            <g transform="translate(255 335)">
+              <rect x="-28" y="-12" width="56" height="28" rx="5" fill="#a66b43"/>
+              <path d="M-23 -12 Q-12 -35 0 -12 Q12 -37 24 -12" fill="#4f9d56"/>
+              <circle cx="-12" cy="-24" r="5" fill="#f0c96b"/>
+              <circle cx="12" cy="-25" r="5" fill="#e68b82"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="wrap">
+        <span class="eyebrow">Entenda o tema</span>
+        <h2>O que é sustentabilidade?</h2>
+        <p class="section-intro">Sustentabilidade é usar os recursos naturais com responsabilidade, pensando nas necessidades de hoje sem prejudicar as possibilidades das próximas gerações. Ela envolve o meio ambiente, a qualidade de vida das pessoas e o uso consciente dos recursos.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true">🌎</div>
+            <h3>Cuidar da natureza</h3>
+            <p>Reduzir a poluição, proteger as plantas e os animais e dar o destino correto aos resíduos.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🤝</div>
+            <h3>Cuidar das pessoas</h3>
+            <p>Cooperar com os vizinhos, compartilhar conhecimentos e ajudar a melhorar os espaços comuns.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">💧</div>
+            <h3>Usar com consciência</h3>
+            <p>Evitar desperdícios de água, energia, alimentos e materiais que podem ser aproveitados novamente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" id="importancia">
+      <div class="wrap two-col">
+        <div>
+          <span class="eyebrow">Por que é importante?</span>
+          <h2>O que fazemos no dia a dia faz diferença.</h2>
+          <p>Quando muitas pessoas adotam pequenas atitudes, elas podem ajudar a reduzir o desperdício, manter os espaços mais limpos e fortalecer o cuidado com a comunidade.</p>
+          <p>Sustentabilidade não precisa começar com uma grande obra ou com muito dinheiro. Pode começar em casa, na rua e nas escolhas de todos os dias.</p>
+        </div>
+        <div class="highlight">
+          <span class="pill">Comece aos poucos</span>
+          <h3>Uma atitude de cada vez</h3>
+          <p>Escolha uma mudança possível para esta semana. Depois, se quiser, compartilhe sua experiência com os vizinhos.</p>
+          <ul class="tip-list">
+            <li>Feche a torneira quando não precisar da água.</li>
+            <li>Apague as luzes e desligue aparelhos sem uso.</li>
+            <li>Planeje as compras para evitar desperdício de alimentos.</li>
+            <li>Separe os recicláveis conforme as orientações da coleta local.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ajudar">
+      <div class="wrap">
+        <span class="eyebrow">Ações para o cotidiano</span>
+        <h2>Como podemos ajudar?</h2>
+        <p class="section-intro">Veja algumas ideias práticas. Escolha as que fazem sentido para sua casa e para a realidade do bairro.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true">♻️</div>
+            <h3>Reduzir e reciclar</h3>
+            <p>Evite produtos descartáveis quando possível, reutilize embalagens seguras e separe os resíduos de acordo com a coleta disponível.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🪴</div>
+            <h3>Reutilizar para plantar</h3>
+            <p>Transforme recipientes adequados em vasos e cultive flores ou plantas. Se usar pneus, prepare-os com segurança e evite água parada.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🚰</div>
+            <h3>Economizar água</h3>
+            <p>Conserte vazamentos quando possível, tome banhos conscientes e reaproveite água apropriada para regar plantas.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">💡</div>
+            <h3>Economizar energia</h3>
+            <p>Aproveite a luz natural, apague lâmpadas em ambientes vazios e desligue equipamentos que não estão sendo usados.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🥕</div>
+            <h3>Evitar desperdício</h3>
+            <p>Planeje refeições, armazene os alimentos corretamente e aproveite as partes comestíveis que forem seguras para consumo.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">🧹</div>
+            <h3>Cuidar do bairro</h3>
+            <p>Não jogue lixo nas ruas. Ajude a divulgar os locais de descarte e combine ações comunitárias respeitando as regras dos espaços públicos.</p>
+          </article>
+        </div>
+        <div style="margin-top:1.4rem" class="suggestion-example">
+          <strong>Exemplo de sugestão comunitária:</strong> “Podemos reaproveitar recipientes adequados, colocar terra e plantar flores para embelezar o bairro e incentivar o cuidado com os espaços.”
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" id="passos">
+      <div class="wrap">
+        <span class="eyebrow">Vamos fazer juntos</span>
+        <h2>Como participar do projeto</h2>
+        <p class="section-intro">Sua participação é voluntária. Você pode ajudar compartilhando uma ideia, aprendendo uma dica ou colocando uma atitude sustentável em prática.</p>
+        <div class="steps">
+          <div class="step"><h3>Conheça</h3><p>Leia as dicas deste site e escolha um tema que deseja melhorar.</p></div>
+          <div class="step"><h3>Pratique</h3><p>Experimente uma atitude sustentável possível na sua rotina.</p></div>
+          <div class="step"><h3>Compartilhe</h3><p>Envie uma sugestão ou conte o que gostaria de ver melhorado no bairro.</p></div>
+          <div class="step"><h3>Inspire</h3><p>Compartilhe o site com alguém que também queira cuidar do meio ambiente.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="participar">
+      <div class="wrap">
+        <div class="participate">
+          <div>
+            <span class="eyebrow" style="color:#f0c96b">A comunidade faz parte</span>
+            <h2>Qual é a sua ideia para um bairro melhor?</h2>
+            <p>Use o formulário abaixo para enviar sugestões, registrar sua participação ou responder à consulta comunitária. Sua contribuição pode ajudar a orientar as próximas ações.</p>
+          </div>
+          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSf9sxXMAm0KC_n62U0_8xdLWEQY3-wYZhb2Xjsk4F2QviTcAg/viewform?usp=header" target="_blank" rel="noopener noreferrer">Abrir formulário ↗</a>
+        </div>
+
+        <div style="height:1.3rem"></div>
+        <div class="form-shell">
+          <div class="form-head">
+            <h3>Participação e sugestões</h3>
+            <p>O formulário será aberto nesta página quando o Google permitir. Se não carregar, use o botão “Abrir formulário”.</p>
+          </div>
+          <iframe class="form-frame"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSf9sxXMAm0KC_n62U0_8xdLWEQY3-wYZhb2Xjsk4F2QviTcAg/viewform?embedded=true"
+            title="Formulário de participação e sugestões do projeto Meu Bairro Sustentável"
+            loading="lazy">Carregando formulário…</iframe>
+          <div class="form-fallback">
+            <a class="btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSf9sxXMAm0KC_n62U0_8xdLWEQY3-wYZhb2Xjsk4F2QviTcAg/viewform?usp=header" target="_blank" rel="noopener noreferrer">Se o formulário não aparecer, clique aqui</a>
+            <p class="note">Para receber presença, mensagens, sugestões ou arquivos, confirme se essas perguntas estão configuradas no seu Google Forms. O envio de fotos e vídeos exige uma pergunta de “Upload de arquivo” no próprio formulário, além das permissões exigidas pelo Google.</p>
+          </div>
+        </div>
+
+        <div style="height:1.3rem"></div>
+        <div class="two-col">
+          <div class="card">
+            <div class="icon" aria-hidden="true">📷</div>
+            <h3>Fotos e vídeos das ações</h3>
+            <p>Você pode registrar uma atitude sustentável, como separar recicláveis ou cuidar de uma planta, e enviar o registro pelo formulário caso exista a opção de anexar arquivos.</p>
+            <p class="note">Peça autorização antes de fotografar ou publicar imagens de outras pessoas. Evite mostrar endereços, telefones ou outras informações pessoais.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">📝</div>
+            <h3>Lista de participação</h3>
+            <p>Se desejar registrar sua participação, use o formulário. Informe apenas os dados solicitados e necessários para o projeto.</p>
+            <p class="note">O nome e o telefone ou e-mail devem ser solicitados no Google Forms se você precisar desses campos. Não publique uma lista de contatos dos moradores no site.</p>
+          </div>
+        </div>
+
+        <div style="height:1.3rem"></div>
+        <div class="privacy">
+          <strong>Privacidade:</strong> as sugestões e os dados enviados são tratados pelo formulário conectado. Não informe dados pessoais de outras pessoas. As respostas só poderão ser encaminhadas a você se o formulário estiver configurado para coletá-las na sua conta Google.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>
+        <strong>🌱 Meu Bairro Sustentável</strong>
+        <p class="small">Pequenas atitudes, grandes mudanças.</p>
+      </div>
+      <div class="small">
+        Projeto educativo de Responsabilidade Social e Sustentabilidade.<br>
+        Feito para incentivar a participação e o cuidado com o meio ambiente.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
